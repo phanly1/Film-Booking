@@ -1,0 +1,43 @@
+<header class="header-section" th:fragment="menu">
+    <nav class="container">
+     
+        <div class="header-wrapper">
+            <div class="logo">
+                <a th:href="@{/fantafilm}">
+                    <img th:src="@{/users/assets/images/logo/logo.png}" alt="logo">
+                </a>
+            </div>
+            <ul class="menu">
+                <li>
+                    <a th:href="@{/fantafilm}" class="active">Trang chủ</a>
+                </li>
+                <li>
+                    <a th:href="@{/fantafilm/dangChieu}">Phim đang chiếu</a>
+
+                </li>
+      
+                <li>
+                    <a href="/fantafilm/lichchieu">Lịch chiếu</a>
+                    
+                </li>
+                
+                <li class="header-button pr-0" th:if="${customer == null}">
+                    <a href="/fantafilm/dangky">Đăng ký ngay</a>
+                </li>
+                <li  th:if="${customer != null}">
+                    <a  href="/fantafilm/thongtincanhan"> Xin chào, [[${customer.name}]]</a>
+                   
+                </li>
+                <li  th:if="${customer != null}">
+                    <a  href="/fantafilm/logout"> <i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                   
+                </li>
+            </ul>
+            <div class="header-bar d-lg-none">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+</header>

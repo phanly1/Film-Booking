@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/users/common/head :: head"></head>
+
+<body>
+<!-- ==========Preloader========== -->
+<div class="preloader">
+    <div class="preloader-inner">
+        <div class="preloader-icon">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
+<!-- ==========Preloader========== -->
+<!-- ==========Overlay========== -->
+<div class="overlay"></div>
+<a href="#0" class="scrollToTop">
+    <i class="fas fa-angle-up"></i>
+</a>
+<!-- ==========Overlay========== -->
+
+<!-- ==========Header-Section========== -->
+<header th:replace="/users/common/menu :: menu"></header>
+<!-- ==========Header-Section========== -->
+
+<!-- ==========Banner-Section========== -->
+<section class="banner-section">
+    <div class="banner-bg bg_img bg-fixed" th:data-background="@{/users/assets/images/banner/banner01.jpg}"></div>
+    <div class="container">
+        <div class="banner-content">
+            <h1 class="title  cd-headline clip"><span class="d-block">Xem các bộ phim mới nhất</span> với
+                <span class="color-theme cd-words-wrapper p-0 m-0">
+                        <b class="is-visible">FantaFilm</b>
+                    </span>
+            </h1>
+
+        </div>
+    </div>
+</section>
+<!-- ==========Banner-Section========== -->
+
+<!-- ==========Ticket-Search========== -->
+<section class="search-ticket-section padding-top pt-lg-0">
+    <div class="container">
+        <div class="search-tab bg_img" th:data-background="@{/users/assets/images/ticket/ticket-bg01.jpg}">
+            <div class="row align-items-center mb--20">
+                <div class="col-lg-6 mb-20">
+                    <div class="search-ticket-header">
+                        <h6 class="category">Chào mừng đến với Fantafilm</h6>
+                        <h3 class="title">Bạn cần tìm gì?</h3>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-20">
+                    <ul class="tab-menu ticket-tab-menu">
+
+                        <li class="active">
+                            <div class="tab-thumb">
+
+                            </div>
+                            <button style="position: absolute; width: inherit; height: inherit; background-color: transparent; border: none; text-align: center; line-height: normal;"
+                                    type="button" onclick="submitForm()">
+                                <img th:src="@{/users/assets/images/ticket/ticket-tab01.png}" alt="ticket">
+                                <b>Tìm kiếm</b>
+                            </button>
+                        </li>
+                        <li>
+                            <div class="tab-thumb">
+                                <img th:src="@{/users/assets/images/ticket/ticket-tab02.png}" alt="ticket">
+                            </div>
+                            <span>Thông tin</span>
+                        </li>
+                        <li>
+                            <div class="tab-thumb">
+                                <img th:src="@{/users/assets/images/ticket/ticket-tab03.png}" alt="ticket">
+                            </div>
+                            <span>Liên hệ</span>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+            <div class="tab-area">
+                <div class="tab-item active">
+                    <form class="ticket-search-form" id="ticket-search-form" th:action="@{/fantafilm/trangchu}">
+                        <div class="form-group">
+                            <div class="thumb">
+                                <img th:src="@{/users/assets/images/ticket/cinema.png}" alt="ticket">
+                            </div>
+                            <span class="type">Thể loại phim</span>
+                            <select id="demo-multiple-select2" name="movieType" class="select-bar" multiple>
+                                <option th:each="movieType : ${movieTypes}" th:value="${movieType.name}"
+                                        th:text="${movieType.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="thumb">
+                                <img th:src="@{/users/assets/images/ticket/cinema.png}" alt="ticket">
+                            </div>
+                            <span class="type">Đạo diễn</span>
+                            <select class="select-bar" id="demo-multiple-select1" name="director" multiple>
+                                <option th:each="director : ${directors}" th:value="${director.name}"
+                                        th:text="${director.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="thumb">
+                                <img th:src="@{/users/assets/images/ticket/cinema.png}" alt="ticket">
+                            </div>
+                            <span class="type">Diễn viên</span>
+                            <select class="select-bar" id="demo-multiple-select4" name="performer" multiple>
+                                <option th:each="performer : ${performers}" th:value="${performer.name}"
+                                        th:text="${performer.name}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <span class="type">Ngôn ngữ</span>
+                            <select id="demo-multiple-select3" name="language" multiple class="select-bar">
+                                <option th:each="language : ${languages}" th:value="${language.name}"
+                                        th:text="${language.name}">
+                                </option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Ticket-Search========== -->
+
+<!-- ==========Movie-Main-Section========== -->
+<section class="movie-section padding-top padding-bottom bg-two">
+    <div class="container">
+        <div class="row flex-wrap-reverse justify-content-center">
+            <div class="col-lg-3 col-sm-10  mt-50 mt-lg-0">
+                <div class="widget-1 widget-facility">
+                    <div class="widget-1-body">
+                        <ul>
+                            <li>
+                                <a th:href="@{/about}">
+                                        <span class="img"><img
+                                                th:src="@{/users/assets/images/sidebar/icons/sidebar01.png}"
+                                                alt="sidebar"></span>
+                                    <span class="cate">Thanh toán nhanh gọn</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/about}">
+                                        <span class="img"><img
+                                                th:src="@{/users/assets/images/sidebar/icons/sidebar02.png}"
+                                                alt="sidebar"></span>
+                                    <span class="cate">An toàn<br> tuyệt đối</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{/about}">
+                                        <span class="img"><img
+                                                th:src="@{/users/assets/images/sidebar/icons/sidebar03.png}"
+                                                alt="sidebar"></span>
+                                    <span class="cate">Hỗ trợ kịp thời</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="widget-1 widget-banner">
+                    <div class="widget-1-body">
+                        <a href="#0">
+                            <img th:src="@{/users/assets/images/sidebar/banner/banner01.jpg}" alt="banner">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="widget-1 widget-banner">
+                    <div class="widget-1-body">
+                        <a href="#0">
+                            <img th:src="@{/users/assets/images/sidebar/banner/banner02.jpg}">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="article-section padding-bottom">
+                    <div class="section-header-1">
+                        <h2 class="title">Đang khởi chiếu</h2>
+                        <a class="view-all" th:href="@{/fantafilm/dangChieu}">Xem tất cả</a>
+                    </div>
+                    <div class="row mb-30-none justify-content-center">
+                        <div class="col-sm-6 col-lg-4" th:each="movie, iterStat : ${listmovie}" th:if="${iterStat.index < 6}">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a th:href="@{'/fantafilm/movie/edit/' + ${movie.id}}">
+                                        <img style="height: 25rem;" th:src="@{'/admin/assets/img/' + ${movie.image}}"
+                                             alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one" style="height: 17rem;">
+                                    <h5 class="title m-0" style="height: 10rem;">
+                                        <a th:href="@{'/fantafilm/movie/edit/' + ${movie.id}}">[[${movie.name}]]</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <p style="height: 3rem">
+                                            <span style="color: #0abfbc">Thể loại:</span>
+                                            <span th:each="type, iterStat : ${movie.movieTypes}">
+                                                    <span th:text="${type.name}"></span>
+                                                    <span th:if="${!iterStat.last}">, </span>
+                                            </span>
+
+
+                                        </p>
+                                        <p>
+                                            <span style="color: #0abfbc">Thời lượng:</span> [[${movie.movieDuration}]] phút
+                                        </p>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="article-section padding-bottom">
+                    <div class="section-header-1">
+                        <h2 class="title">Sắp khởi chiếu</h2>
+                        <a class="view-all" href="all.html">Xem tất cả</a>
+                    </div>
+                    <div class="row mb-30-none justify-content-center">
+                        <div class="col-sm-6 col-lg-4" th:each="movie, iterStat : ${listmovie1}" th:if="${iterStat.index < 6}">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a th:href="@{'/fan/movie/edit/' + ${movie.id}}">
+                                        <img style="height: 25rem;" th:src="@{'/admin/assets/img/' + ${movie.image}}"
+                                             alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one" style="height: 17rem;">
+                                    <h5 class="title m-0" style="height: 10rem;">
+                                        <a th:href="@{'/fantafilm/movie/edit/' + ${movie.id}}">[[${movie.name}]]</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <p>
+                                            Thể loại:
+                                            <span th:each="type, iterStat : ${movie.movieTypes}">
+                                                    <span th:text="${type.name}"></span>
+                                                    <span th:if="${!iterStat.last}">, </span>
+                                            </span>
+                                            <br>
+                                            Thời lượng: [[${movie.movieDuration}]] phút <br>
+
+                                        </p>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    function submitForm() {
+        document.getElementById('ticket-search-form').submit();
+    }
+</script>
+<!-- ==========Movie-Main-Section========== -->
+<!--<script src="https://tudongchat.com/js/chatbox.js"></script>-->
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--<script th:inline="javascript">const tudong_chatbox = new TuDongChat("C1tWgbGRbc6iYpd-oBqPI");-->
+<!--tudong_chatbox.initial();-->
+<!--mobiscroll.setOptions({-->
+<!--    locale: mobiscroll.localeEn,-->
+<!--    theme: "ios",-->
+<!--    themeVariant: "light",-->
+<!--});-->
+
+<!--mobiscroll.select("#demo-multiple-select1", {-->
+<!--    inputElement: document.getElementById("demo-multiple-select-input1"),-->
+<!--});-->
+<!--mobiscroll.select("#demo-multiple-select2", {-->
+<!--    inputElement: document.getElementById("demo-multiple-select-input2"),-->
+<!--});-->
+<!--mobiscroll.select("#demo-multiple-select3", {-->
+<!--    inputElement: document.getElementById("demo-multiple-select-input3"),-->
+<!--});-->
+<!--mobiscroll.select("#demo-multiple-select4", {-->
+<!--    inputElement: document.getElementById("demo-multiple-select-input4"),-->
+<!--});-->
+<!--</script>-->
+<!-- ==========Newslater-Section========== -->
+<footer th:replace="/users/common/footer :: footer"></footer>
+<!-- ==========Newslater-Section========== -->
+<head th:replace="/users/common/js :: script"></head>
+</body>
+
+</html>

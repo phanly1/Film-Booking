@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/users/common/head :: head"></head>
+
+
+<body>
+    <!-- ==========Preloader========== -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ==========Preloader========== -->
+    <!-- ==========Overlay========== -->
+    <div class="overlay"></div>
+    <a href="#0" class="scrollToTop">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- ==========Overlay========== -->
+
+    <!-- ==========Header-Section========== -->
+    <header th:replace="/users/common/menu :: menu"></header>
+    <!-- ==========Header-Section========== -->
+
+    <!-- ==========Banner-Section========== -->
+    <form action="#" th:object="${movie}" method="get">
+        <section class="details-banner bg_img" th:data-background="@{'/admin/assets/img/' + *{image}}">
+            <div class="container">
+                <div class="details-banner-wrapper">
+                    <div class="details-banner-thumb">
+                        <img src="" th:src="@{'/admin/assets/img/' + *{image}}" alt="">
+                        <a th:href="*{trailer}" class="video-popup">
+                            <img th:src="@{/users/assets/images/movie/video-button.png}" alt="movie">
+                        </a>
+                    </div>
+                    <div class="details-banner-content offset-lg-3">
+                        <h2 th:utext="*{name}"></h2><br>
+                        <div class="tags" th:each="languages, iterStat : ${movie.languages}">
+                            <span th:text="${languages.name}"></span>
+                            <span th:if="${!iterStat.last}"> </span>
+                        </div>
+
+                        <div style="margin-bottom: 1rem;">
+                            <th:block th:each="type, iterStat : ${movie.movieTypes}">
+                                <span class="button" th:text="${type.name}"></span>
+                                <span th:if="${!iterStat.last}"> </span>
+                            </th:block>
+                        </div>
+
+                        <div class="social-and-duration">
+                            <div class="duration-area">
+                                <div class="item">
+                                    <i class="fas fa-calendar-alt"></i><span id="ngaytao" th:utext="*{premiereDate}"
+                                        value="dd/MM/yyyy"></span>
+                                </div>
+                                <div class="item">
+                                    <i class="far fa-clock"></i><span th:utext="*{movieDuration}"></span> phút
+                                </div>
+                            </div>
+                            <ul class="social-share">
+                                <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
+                                <li><a href="#0"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="#0"><i class="fab fa-google-plus-g"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========Banner-Section========== -->
+
+        <!-- ==========Book-Section========== -->
+        <section class="book-section bg-one">
+            <div class="container">
+                <div class="book-wrapper offset-lg-3">
+                    <div class="left-side">
+                        Lưu ý:&#160;<span th:utext="*{rated.getDescription()}"></span>
+                    </div>
+                    <div th:if="${customer == null}">
+                        <a th:href="@{/fantafilm/dangky}" class="custom-button">Tới đăng ký</a>
+                    </div> 
+                    <div th:unless="${customer == null}">
+                        <a th:href="@{'/show/cinema?movieId='+${movie.id}}" class="custom-button">Đặt vé ngay</a>
+
+                    </div>
+                </div>
+        </section>
+        <!-- ==========Book-Section========== -->
+
+        <!-- ==========Movie-Section========== -->
+        <section class="movie-details-section padding-top padding-bottom">
+            <div class="container">
+                <div class="row justify-content-center flex-wrap-reverse mb--50">
+                    <div class="col-lg-3 col-sm-10 col-md-6 mb-50">
+                        <div class="widget-1 widget-tags">
+                            <ul>
+                                <li>
+                                    <a href="#0">2D</a>
+                                </li>
+                                <li>
+                                    <a href="#0">imax 2D</a>
+                                </li>
+                                <li>
+                                    <a href="#0">4DX</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget-1 widget-offer">
+                            <h3 class="title">Quảng cáo</h3>
+                            <div class="offer-body">
+                                <div class="offer-item">
+                                    <div class="thumb">
+                                        <img th:src="@{/users/assets/images/sidebar/offer01.png}" alt="sidebar">
+                                    </div>
+                                    <div class="content">
+                                        <h6>
+                                            <a href="#0">Amazon Pay Cashback Offer</a>
+                                        </h6>
+                                        <p>Win Cashback Upto Rs 300*</p>
+                                    </div>
+                                </div>
+                                <div class="offer-item">
+                                    <div class="thumb">
+                                        <img th:src="@{/users/assets/images/sidebar/offer02.png}" alt="sidebar">
+                                    </div>
+                                    <div class="content">
+                                        <h6>
+                                            <a href="#0">PayPal Offer</a>
+                                        </h6>
+                                        <p>Transact first time with Paypal and
+                                            get 100% cashback up to Rs. 500</p>
+                                    </div>
+                                </div>
+                                <div class="offer-item">
+                                    <div class="thumb">
+                                        <img th:src="@{/users/assets/images/sidebar/offer03.png}" alt="sidebar">
+                                    </div>
+                                    <div class="content">
+                                        <h6>
+                                            <a href="#0">HDFC Bank Offer</a>
+                                        </h6>
+                                        <p>Get 15% discount up to INR 100*
+                                            and INR 50* off on F&B T&C apply</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-1 widget-banner">
+                            <div class="widget-1-body">
+                                <a href="#0">
+                                    <img th:src="@{/users/assets/images/sidebar/banner/banner01.jpg}" alt="banner">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 mb-50">
+                        <div class="movie-details">
+
+                            <div class="tab summery-review">
+                                <ul class="tab-menu">
+                                    <li class="active">
+                                        summery
+                                    </li>
+                                </ul>
+                                <div class="tab-area">
+                                    <div class="tab-item active">
+                                        <div class="item">
+                                            <h5 class="sub-title">Tóm tắt nội dung</h5>
+                                            <p th:utext="*{description}"></p> <br>
+                                        </div>
+                                        <div class="item">
+                                            <div class="header">
+                                                <h5 class="sub-title">Diễn Viên</h5>
+                                                <div class="navigation">
+                                                    <div class="cast-prev"><i
+                                                            class="flaticon-double-right-arrows-angles"></i></div>
+                                                    <div class="cast-next"><i
+                                                            class="flaticon-double-right-arrows-angles"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="casting-slider owl-carousel">
+                                                <div class="cast-item"
+                                                    th:each="performer, iterStat : ${movie.performers}">
+                                                    <div class="cast-thumb">
+                                                        <a href="#0">
+                                                            <img alt="cast"
+                                                                th:src="@{/users/assets/images/cast/cast05.jpg}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="cast-content">
+                                                        <h6 class="cast-title" th:text="${performer.name}"><a
+                                                                href="#0"></a></h6>
+                                                        <span class="cate"></span>
+                                                        <p>As Richie Tozier</p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="item">
+                                            <div class="header">
+                                                <h5 class="sub-title">Đạo diễn</h5>
+                                                <div class="navigation">
+                                                    <div class="cast-prev-2"><i
+                                                            class="flaticon-double-right-arrows-angles"></i></div>
+                                                    <div class="cast-next-2"><i
+                                                            class="flaticon-double-right-arrows-angles"></i></div>
+                                                </div>
+                                            </div>
+                                            <div class="casting-slider-two owl-carousel">
+                                                <div class="cast-item"
+                                                    th:each="director, iterStat : ${movie.directors}">
+                                                    <div class="cast-thumb">
+                                                        <a href="#0">
+                                                            <img alt="cast"
+                                                                th:src="@{/users/assets/images/cast/cast05.jpg}">
+                                                        </a>
+                                                    </div>
+                                                    <div class="cast-content">
+                                                        <h6 class="cast-title" th:text="${director.name}"><a
+                                                                href="#0"></a></h6>
+                                                        <span class="cate"></span>
+                                                        <p>As Richie Tozier</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </form>
+    <!-- ==========Movie-Section========== -->
+
+    <!-- ==========Newslater-Section========== -->
+
+    <!-- ==========Newslater-Section========== -->
+    <footer th:replace="/users/common/footer :: footer"></footer>
+    <!-- ==========Newslater-Section========== -->
+
+    <head th:replace="/users/common/js :: script"></head>
+    <script>
+        var elements = document.querySelectorAll("#ngaytao");
+
+        // Loop through each element and update its inner HTML with the formatted date
+        elements.forEach(function (element) {
+            var myData = element.innerHTML;
+            var dateTime = new Date(myData);
+            var day = dateTime.getDate();
+            var formattedDay = String(day).padStart(2, '0');
+            var month = dateTime.getMonth() + 1;
+            var formattedMonth = String(month).padStart(2, '0');
+            var year = dateTime.getFullYear();
+            var formattedDate = formattedDay + "/" + formattedMonth + "/" + year;
+            element.innerHTML = formattedDate;
+        });
+    </script>
+
+</body>
+
+</html>

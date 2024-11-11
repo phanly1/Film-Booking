@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/users/common/head :: head"></head>
+
+<body>
+    <!-- ==========Preloader========== -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ==========Preloader========== -->
+    <!-- ==========Overlay========== -->
+    <div class="overlay"></div>
+    <a href="#0" class="scrollToTop">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- ==========Overlay========== -->
+
+    <!-- ==========Header-Section========== -->
+    <header th:replace="/users/common/menu :: menu"></header>
+    <!-- ==========Header-Section========== -->
+
+    <!-- ==========Banner-Section========== -->
+    <section class="banner-section">
+        <div class="banner-bg bg_img bg-fixed" th:data-background="@{/users/assets/images/banner/banner02.jpg}"></div>
+        <div class="container">
+            <div class="banner-content">
+                <h1 class="title bold">Đặt vé <span class="color-theme">xem phim</span></h1>
+                <p>Đặt trước vé, xem trailer, đọc bài đánh giá và hơn thế nữa</p>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Banner-Section========== -->
+
+    <!-- ==========Ticket-Search========== -->
+
+    <!-- ==========Ticket-Search========== -->
+    <!-- ==========Movie-Section========== -->
+
+        <div class="container">
+            <div class="row flex-wrap-reverse justify-content-center">
+                <div class="col-lg-9 mb-50 mb-lg-0">
+                    <div class="filter-tab tab">
+                        <div class="tab-area">
+                            <div class="tab-item active">
+                                <div class="row mb-10 justify-content-center">
+                                    <div class="col-sm-6 col-lg-4" th:each="movie : ${listmovie}">
+                                        <div class="movie-grid">
+                                            <div class="movie-thumb c-thumb">
+                                                <a th:href="@{'/fantafilm/movie/edit/' + ${movie.id}}">
+                                                    <img style="height: 25rem;" th:src="@{'/admin/assets/img/' + ${movie.image}}"
+                                                         alt="movie">
+                                                </a>
+                                            </div>
+                                            <div class="movie-content bg-one" style="height: 17rem;">
+                                                <h5 class="title m-0" style="height: 10rem;">
+                                                    <a th:href="@{'/fantafilm/movie/edit/' + ${movie.id}}">[[${movie.name}]]</a>
+                                                </h5>
+                                                <ul class="movie-rating-percent">
+                                                    <p style="height: 3rem">
+                                                        <span style="color: #0abfbc">Thể loại:</span>
+                                                        <span th:each="type, iterStat : ${movie.movieTypes}">
+                                                                <span th:text="${type.name}"></span>
+                                                                <span th:if="${!iterStat.last}">, </span>
+                                                        </span>
+            
+            
+                                                    </p>
+                                                    <p>
+                                                        <span style="color: #0abfbc">Thời lượng:</span> [[${movie.movieDuration}]] phút
+                                                    </p>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="pagination-area text-center">
+                        <a href="#0"><i class="fas fa-angle-double-left"></i><span>Prev</span></a>
+                        <a href="#0">1</a>
+                        <a href="#0">2</a>
+                        <a href="#0" class="active">3</a>
+                        <a href="#0">4</a>
+                        <a href="#0">5</a>
+                        <a href="#0"><span>Next</span><i class="fas fa-angle-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    <!-- ==========Movie-Section========== -->
+
+    <!-- ==========Newslater-Section========== -->
+    <footer th:replace="/users/common/footer :: footer"></footer>
+    <!-- ==========Newslater-Section========== -->
+
+    <head th:replace="/users/common/js :: script"></head>
+</body>
+
+</html>

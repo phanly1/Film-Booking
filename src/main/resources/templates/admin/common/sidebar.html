@@ -1,0 +1,186 @@
+<aside class="left-sidebar" th:fragment="sidebar">
+    <!-- Sidebar scroll-->
+    <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+            <a href="/addons/admin" class="text-nowrap logo-img">
+                <img th:src="@{/addons/admin/assets/images/logos/dark-logo.svg}" width="180" alt="" />
+            </a>
+            <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                <i class="ti ti-x fs-8"></i>
+            </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+            <ul id="sidebarnav">
+                <li class="nav-small-cap">
+                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                    <span class="hide-menu">Home</span>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" th:href="@{/addons/admin/}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu">Dashboard</span>
+                    </a>
+                </li>
+                <!--                <li class="nav-small-cap">-->
+                <!--                    <i class="ti ti-dots nav-small-cap-icon fs-4"></i>-->
+                <!--                    <span class="hide-menu">All</span>-->
+                <!--                </li>-->
+                <!--MAU CINEMA-->
+                <a data-toggle="collapse" href="#cinema">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Cinema Information</span>
+                    </li>
+                </a>
+
+                <div id="cinema" class="panel-collapse collapse">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/cinema/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Cinema</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/cinema/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Room</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/cinema/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Seat</span>
+                        </a>
+                    </li>
+                </div>
+                <!--                END MAU -->
+
+                <a data-toggle="collapse" href="#movie">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Movie Information</span>
+                    </li>
+                </a>
+                <div id="movie" class="panel-collapse collapse">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/movie/view-all/page/1?status=&keyword=" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Movie</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/performer/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Actor</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/director/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Director</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/movieType/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Movie Type</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/language/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Language</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/rated/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Age Limited</span>
+                        </a>
+                    </li>
+                </div>
+
+                <a data-toggle="collapse" href="#service">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">Service</span>
+                    </li>
+                </a>
+
+                <div id="service" class="panel-collapse collapse">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/cinema/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Food</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/serviceType/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Service Type</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/rankCustomer/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Customer Rank Type</span>
+                        </a>
+                    </li>
+                </div>
+
+                
+                <a data-toggle="collapse" href="#more">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                        <span class="hide-menu">More option</span>
+                    </li>
+                </a>
+
+                <div id="more" class="panel-collapse collapse">
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="/addons/admin/rated/view-all" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-article"></i>
+                            </span>
+                            <span class="hide-menu">Age Limited</span>
+                        </a>
+                    </li>
+                    
+                </div>
+
+            </ul>
+
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

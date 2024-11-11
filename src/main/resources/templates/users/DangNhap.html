@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="/users/common/head :: head"></head>
+
+<body>
+    <!-- ==========Preloader========== -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ==========Preloader========== -->
+    
+    <!-- ==========Sign-In-Section========== -->
+    <section class="account-section bg_img" th:data-background="@{/users/assets/images/account/account-bg.jpg}">
+        <div class="container">
+            <div class="padding-top padding-bottom">
+                <div class="account-area">
+                    <div class="section-header-3">
+                        <span class="cate">hello</span>
+                        <h3 class="title">Bạn quay lại rồi</h3>
+                    </div>
+                    <div th:if="${session.ERR_LOGIN != null}" class="alert alert-danger" id="yourElementId" role="alert">
+                        [[${session.ERR_LOGIN}]]
+                    </div>
+                    <form class="account-form" action="/fantafilm/login" method="post" id="loginForm">
+                        <div class="form-group">
+                            <label for="email2">Email<span>*</span></label>
+                            <input type="text" placeholder="Enter Your Email" id="email2" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass3">Password<span>*</span></label>
+                            <input type="password" placeholder="Password" id="pass3" name="password" required>
+                        </div>
+                        <div class="form-group checkgroup">
+                            <input type="checkbox" id="bal2" required checked>
+                            <label for="bal2">Nhớ mật khẩu</label>
+                            <a href="#0" class="forget-pass">Quên mật khẩu</a>
+                        </div>
+                        <div class="form-group text-center">
+                            <input type="submit" value="Đăng nhập">
+                        </div>
+                    </form>
+                    <div class="option">
+                       Chưa có tài khoản? <a th:href="@{/fantafilm/dangky}">Đăng ký ngay</a>
+                    </div>
+                    <div class="or"><span>Hoặc</span></div>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="#0">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#0" class="active">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#0">
+                                <i class="fab fa-google"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==========Sign-In-Section========== -->
+    <head th:replace="/users/common/js :: script"></head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+            const errorDiv = document.getElementById('yourElementId');
+            
+            // Kiểm tra nếu session.ERR_LOGIN không null và form đã được submit
+            if (errorDiv && errorDiv.textContent.trim() !== "") {
+                errorDiv.style.display = 'block';
+            } else {
+                errorDiv.style.display = 'none';
+            }
+
+            // Sự kiện submit form
+            loginForm.addEventListener('submit', function () {
+                sessionStorage.setItem('formSubmitted', 'true');
+            });
+
+            // Kiểm tra nếu form đã được submit
+            if (sessionStorage.getItem('formSubmitted') === 'true') {
+                sessionStorage.removeItem('formSubmitted');
+                if (errorDiv && errorDiv.textContent.trim() !== "") {
+                    errorDiv.style.display = 'block';
+                }
+            } else {
+                errorDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

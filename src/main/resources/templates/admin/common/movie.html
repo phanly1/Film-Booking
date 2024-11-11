@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/addons/admin/common/head :: head">
+</head>
+
+<body>
+    <!--  Body Wrapper -->
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        <!-- Sidebar Start -->
+
+        <head th:replace="/addons/admin/common/sidebar :: sidebar"></head>
+        <!--  Sidebar End -->
+        <!--  Main wrapper -->
+        <div class="body-wrapper">
+            <!--  Header Start -->
+
+            <head th:replace="/addons/admin/common/menu :: menu"></head>
+            <!--  Header End -->
+            <div class="container-fluid">
+
+                <div class="card-body" style="padding: 0rem">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <a href="/addons/admin/movie/view-add"><button type="button" class="btn btn-success m-1">Add new
+                                    Movie</button></a>
+                            <button type="button" class="btn btn-warning m-1">Search</button>
+                        </div>
+                    </div>
+                </div>
+                <!--  Row-->
+                <div class="row">
+                    <div class="col-sm-6 col-xl-3" th:each="movie : ${listMovie}">
+                        <div class="card overflow-hidden rounded-2">
+                            <!-- Ảnh -->
+                            <div class="position-relative">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{'/addons/admin/assets/images/products/'+${movie.image}}"
+                                        class="card-img-top rounded-0" alt="..." height="400px"></a>
+
+                                <a th:href="@{'/addons/admin/movie/update/'+${currentPage} +'/' + ${movie.id}}"
+                                    class="bg-primary rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-2"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" ><i
+                                        class="ti ti-settings fs-4"></i></a>
+
+                                <a onclick="return confirm('Delete this?')" th:href="@{'/addons/admin/movie/delete/' + ${movie.id}}"
+                                   class="bg-danger rounded-circle p-2 text-white d-inline-flex position-absolute bottom-0 end-0 mb-n3 me-lg-5"
+                                   data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Add To Cart"><i
+                                        class="ti ti-trash-x fs-4"></i></a>
+                            </div>
+                            <!-- Tên phim -->
+                            <div class="card-body pt-3 p-4">
+                                <h6 class="fw-semibold fs-4">[[${movie.name}]]</h6>
+                                <!-- <p class="fw-semibold">Code: [[${movie.code}]]</p> -->
+                                <p class="fw-semibold">[[${movie.movieDuration}]] minutes</p>
+                                <p class="fw-semibold"><span class="card-text"
+                                        th:text="${#dates.format(movie.premiereDate, 'dd/MM/yyyy')}"></span>
+                                    - <span class="card-text"
+                                        th:text="${#dates.format(movie.endDate, 'dd/MM/yyyy')}"></span></p>
+
+                                <p class="fw-semibold">[[${movie.status}]]</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="container">-->
+<!--                <h2>Pagination - Disabled State</h2>-->
+<!--                <p>Add class .disabled if a page for some reason is disabled:</p>-->
+<!--                <ul class="pagination">-->
+<!--                    <li><a href="#">1</a></li>-->
+<!--                    <li><a href="#">2</a></li>-->
+<!--                    <li><a href="#">3</a></li>-->
+<!--                    <li class="disabled"><a href="#">4</a></li>-->
+<!--                    <li><a href="#">5</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+            <div class="phanTrang_Movie text-center" style="margin-left: 50%">
+
+                    <ul class="pagination pagination-large">
+                        <th:block th:if="${currentPage > 1}">
+                            <li class="page-item">
+                                <a class="page-link"
+                                    th:href="@{'/addons/admin/movie/view-all/page/' + ${currentPage - 1} + ${status == null ? '' : '?status=' + status} + ${keyword == null ? '' : '&keyword=' + keyword}}"
+                                    aria-label="Previous" onclick="overLoad()">
+                                    &laquo;
+                                </a>
+                            </li>
+                        </th:block>
+                        <th:block th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+                            <li class="page-item">
+                                <a class="page-link"
+                                    th:href="@{'/addons/admin/movie/view-all/page/' + ${pageNumber} + ${status == null ? '' : '?status=' + status} + ${keyword == null ? '' : '&keyword=' + keyword}}"
+                                    onclick="overLoad()">
+                                    [[${pageNumber}]]
+                                </a>
+                            </li>
+                        </th:block>
+                        <th:block th:if="${currentPage < totalPages}">
+                            <li class="page-item">
+                                <a class="page-link"
+                                    th:href="@{'/addons/admin/movie/view-all/page/' + ${currentPage + 1} + ${status == null ? '' : '?status=' + status} + ${keyword == null ? '' : '&keyword=' + keyword}}"
+                                    aria-label="Next" onclick="overLoad()">
+                                    &raquo;
+                                </a>
+                            </li>
+                        </th:block>
+                    </ul>
+                <br>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Paging -->
+
+    <head th:replace="/addons/admin/common/js :: script"></head>
+
+</body>
+
+</html>
